@@ -3,4 +3,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #eef0f4;
+    color: #2c3143;
 }
