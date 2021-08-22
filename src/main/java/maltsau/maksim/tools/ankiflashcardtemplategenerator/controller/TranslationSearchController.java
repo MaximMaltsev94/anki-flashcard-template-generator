@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/search-translation")
 public class TranslationSearchController {
 
-    private TranslationSearchService translationSearchService;
+    private final TranslationSearchService translationSearchService;
 
     @Autowired
     public TranslationSearchController(TranslationSearchService translationSearchService) {

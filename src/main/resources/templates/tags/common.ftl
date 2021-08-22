@@ -1,4 +1,5 @@
 <#import "/spring.ftl" as spring/>
+
 <#macro html title>
     <html>
        <head>
@@ -9,13 +10,12 @@
           <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"/>"></script>
        </head>
        <body>
-          <div class="ui raised very padded text container segment">
+          <div class="ui raised very padded container segment">
              <#nested>
           </div>
        </body>
     </html>
 </#macro>
-
 
 <#macro wordSearchInput word="">
     <form action="<@spring.url '/search-translation/'/>">
@@ -28,8 +28,6 @@
        </div>
     </form>
 </#macro>
-
-
 
 <#macro usefulLinksSection translationResult>
     <div class="ui card fluid">
@@ -56,4 +54,30 @@
           <audio controls src="${translationResult.pronunciationUri}"></audio>
        </div>
     </div>
+</#macro>
+
+<#macro generateWordContextForm translationResult>
+    <form class="ui form" action="<@spring.url '/generate-anki-flashcards/'/>" method="POST">
+      <div class="field">
+        <label>Original word</label>
+        <input type="text" name="originalWord" placeholder="Original word" value="${translationResult.originalWord}">
+      </div>
+      <div class="field">
+        <label>Translation</label>
+        <textarea rows="2" name="translation" placeholder="Translation"></textarea>
+      </div>
+      <div class="field">
+        <label>Original context</label>
+        <textarea rows="2" name="originalContext" placeholder="Original context"></textarea>
+      </div>
+      <div class="field">
+        <label>Translated context</label>
+        <textarea rows="2" name="translatedContext" placeholder="Original context"></textarea>
+      </div>
+      <div class="field">
+        <label>Pronunciation uri</label>
+        <input type="text" name="pronunciationUri" placeholder="Pronunciation uri" value="${translationResult.pronunciationUri}">
+      </div>
+      <button class="ui primary right floated button" type="submit">Generate flashcard</button>
+    </form>
 </#macro>
