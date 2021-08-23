@@ -9,6 +9,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+/**
+ * Controller class which handles requests for generation of flash cards.
+ *
+ *
+ * created on 22.08.2021
+ * @author Maksim Maltsau
+ */
 @Controller
 @RequestMapping("/generate-anki-flashcards")
 public class AnkiCardsGeneratorController {
