@@ -3,9 +3,15 @@ package maltsau.maksim.tools.ankiflashcardtemplategenerator.service;
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.domain.TranslationSearchResult;
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.service.linkgenerator.LinkGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+/**
+ * Implementation of {@link TranslationSearchService}.
+ * Date: 22.08.2021
+ *
+ * @author Maksim Maltsau
+ */
+@Service
 public class TranslationSearchServiceImpl implements TranslationSearchService {
 
     private final LinkGenerator reversoContextLinkGenerator;

@@ -3,14 +3,20 @@ package maltsau.maksim.tools.ankiflashcardtemplategenerator.service.filestorage;
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.exception.FileStorageServiceException;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
-@Component
+/**
+ * Implementation of {@link FileStorageService} which work with file system.
+ * Date: 22.08.2021
+ *
+ * @author Maksim Maltsau
+ */
+@Service
 public class FileSystemFileStorageServiceImpl implements FileStorageService {
 
     private static final String FILE_SAVE_EXCEPTION = "error while writing file to disk";

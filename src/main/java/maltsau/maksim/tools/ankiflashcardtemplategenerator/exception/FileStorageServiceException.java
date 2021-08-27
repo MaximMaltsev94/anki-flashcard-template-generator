@@ -1,6 +1,13 @@
 package maltsau.maksim.tools.ankiflashcardtemplategenerator.exception;
 
-public class FileStorageServiceException extends RuntimeException{
+/**
+ * Exception for
+ * {@link maltsau.maksim.tools.ankiflashcardtemplategenerator.service.filestorage.FileStorageService} errors.
+ * Date: 22.08.2021
+ *
+ * @author Maksim Maltsau
+ */
+public class FileStorageServiceException extends RuntimeException {
     public FileStorageServiceException(String message, Throwable cause) {
         super(message, cause);
     }
