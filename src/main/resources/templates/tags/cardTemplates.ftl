@@ -1,7 +1,7 @@
 <#ftl output_format="HTML" auto_esc=true>
 
 <#macro basicTemplate wordsList context="" soundFileName="" withSound=false>
-    <pre class="ui secondary inverted segment">
+    <pre class="ui secondary inverted full-height segment">
 ${'<div class="word">'}
   ${'<ul>'}
   <#list wordsList as word>
