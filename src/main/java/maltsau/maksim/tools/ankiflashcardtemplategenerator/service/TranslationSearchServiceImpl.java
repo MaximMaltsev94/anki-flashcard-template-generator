@@ -31,11 +31,12 @@ public class TranslationSearchServiceImpl implements TranslationSearchService {
 
     @Override
     public TranslationSearchResult searchTranslation(String word) {
+        String lowercaseWord = word.toLowerCase();
         return TranslationSearchResult.builder()
-                .withOriginalWord(word)
-                .withTranslationUri(googleTranslateLinkGenerator.generateLink(word))
-                .withContextUri(reversoContextLinkGenerator.generateLink(word))
-                .withPronunciationUri(pronunciationLinkGenerator.generateLink(word))
+                .withOriginalWord(lowercaseWord)
+                .withTranslationUri(googleTranslateLinkGenerator.generateLink(lowercaseWord))
+                .withContextUri(reversoContextLinkGenerator.generateLink(lowercaseWord))
+                .withPronunciationUri(pronunciationLinkGenerator.generateLink(lowercaseWord))
                 .build();
     }
 }

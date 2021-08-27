@@ -81,3 +81,9 @@
       <button class="ui primary right floated button" type="submit">Generate flashcard</button>
     </form>
 </#macro>
+
+<#macro mainPageButton customClasses="">
+    <form action="<@spring.url '/'/>">
+        <button class="ui button ${customClasses}">Generate cards for another word.</button>
+    </form>
+</#macro>
