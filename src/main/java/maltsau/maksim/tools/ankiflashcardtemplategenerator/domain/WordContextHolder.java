@@ -3,6 +3,12 @@ package maltsau.maksim.tools.ankiflashcardtemplategenerator.domain;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Domain object for storing information for flashcard generation.
+ * Date: 22.08.2021
+ *
+ * @author Maksim Maltsau
+ */
 public class WordContextHolder {
     private String originalWord;
     private String originalContext;
@@ -41,13 +47,27 @@ public class WordContextHolder {
         return pronunciationFileName;
     }
 
+    /**
+     * Builder method.
+     * @return Builder for {@link WordContextHolder}
+     */
     public static Builder builder() {
         return new Builder();
     }
 
+    /**
+     * Builder for {@link WordContextHolder}.
+     * Date: 22.08.2021
+     *
+     * @author Maksim Maltsau
+     */
     public static class Builder {
         private final WordContextHolder prototype = new WordContextHolder();
 
+        /**
+         * Builds new object according to configured properties.
+         * @return {@link WordContextHolder} object
+         */
         public WordContextHolder build() {
             return new WordContextHolder(this);
         }

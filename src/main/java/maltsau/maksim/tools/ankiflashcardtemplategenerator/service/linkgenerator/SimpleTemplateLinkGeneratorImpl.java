@@ -3,6 +3,12 @@ package maltsau.maksim.tools.ankiflashcardtemplategenerator.service.linkgenerato
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Implementation of {@link LinkGenerator} which simply replace placeholder in given template.
+ * Date: 22.08.2021
+ *
+ * @author Maksim Maltsau
+ */
 public class SimpleTemplateLinkGeneratorImpl implements LinkGenerator {
 
     private final String template;

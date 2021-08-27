@@ -5,7 +5,7 @@ import maltsau.maksim.tools.ankiflashcardtemplategenerator.exception.WordContext
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.service.filestorage.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.UrlResource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -13,7 +13,13 @@ import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.List;
 
-@Component
+/**
+ * Implementation of {@link WordContextService}.
+ * Date: 22.08.2021
+ *
+ * @author Maksim Maltsau
+ */
+@Service
 public class WordContextServiceImpl implements WordContextService {
 
     private static final String MALFORMED_URI_MSG = "Error with parsing of provided URI";
@@ -28,7 +34,11 @@ public class WordContextServiceImpl implements WordContextService {
     }
 
     @Override
-    public WordContextHolder generateContext(String originalWord, String originalContext, String translatedWords, String translatedContext, String pronunciationUri) {
+    public WordContextHolder generateContext(String originalWord,
+                                             String originalContext,
+                                             String translatedWords,
+                                             String translatedContext,
+                                             String pronunciationUri) {
         String savedFileName = saveFileFromUri(pronunciationUri);
         List<String> translatedWordsList = splitByNewLine(translatedWords);
 
@@ -53,7 +63,7 @@ public class WordContextServiceImpl implements WordContextService {
     }
 
     private List<String> splitByNewLine(String source) {
-        if(!StringUtils.hasText(source)) {
+        if (!StringUtils.hasText(source)) {
             return Collections.emptyList();
         }
         return List.of(source.split(NEW_LINE_REGEX));
