@@ -9,7 +9,7 @@
     </parent>
     <groupId>maltsau.maksim.tools</groupId>
     <artifactId>anki-flashcard-template-generator</artifactId>
-    <version>0.0.6</version>
+    <version>0.0.7-SNAPSHOT</version>
     <name>anki-flashcard-template-generator</name>
     <description>Application for searching of word translation and generation of flashcard templates for Anki
         application
@@ -20,7 +20,7 @@
         <developerConnection>scm:git:git@github.com:MaximMaltsev94/anki-flashcard-template-generator.git
         </developerConnection>
         <url>https://github.com/MaximMaltsev94/anki-flashcard-template-generator</url>
-        <tag>anki-flashcard-template-generator-0.0.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
