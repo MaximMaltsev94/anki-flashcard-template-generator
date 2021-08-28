@@ -1,5 +1,4 @@
 # Anki flashcard template generator tool
-___
 
 ## About
 Application is intended to help with generation of flashcards for [Anki application](https://apps.ankiweb.net/).

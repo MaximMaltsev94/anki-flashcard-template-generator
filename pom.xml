@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.4</version>
-        <relativePath /> <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>maltsau.maksim.tools</groupId>
     <artifactId>anki-flashcard-template-generator</artifactId>
     <version>0.0.4-SNAPSHOT</version>
     <name>anki-flashcard-template-generator</name>
-    <description>Application for searching of word translation and generation of flashcard templates for Anki application</description>
+    <description>Application for searching of word translation and generation of flashcard templates for Anki
+        application
+    </description>
 
     <scm>
         <connection>scm:git:git@github.com:MaximMaltsev94/anki-flashcard-template-generator.git</connection>
-        <developerConnection>scm:git:git@github.com:MaximMaltsev94/anki-flashcard-template-generator.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:MaximMaltsev94/anki-flashcard-template-generator.git
+        </developerConnection>
         <url>https://github.com/MaximMaltsev94/anki-flashcard-template-generator</url>
         <tag>HEAD</tag>
     </scm>
@@ -28,6 +32,10 @@
 
         <commons-io.version>2.11.0</commons-io.version>
         <checkstyle-plugin.version>3.1.2</checkstyle-plugin.version>
+        <pmd-plugin.version>3.14.0</pmd-plugin.version>
+        <info-reports-plugin.version>3.0.0</info-reports-plugin.version>
+        <site-plugin.version>3.7.1</site-plugin.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -65,12 +73,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
+                <version>${site-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${info-reports-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -89,6 +97,20 @@
                         <phase>validate</phase>
                         <goals>
                             <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmd-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                            <goal>cpd-check</goal>
                         </goals>
                     </execution>
                 </executions>
