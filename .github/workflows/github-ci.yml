@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -24,3 +22,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Release
+      uses: qcastel/github-actions-maven-release@master
+      with: 
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      env:
+        JAVA_HOME: /usr/lib/jvm/java-11-openjdk/
