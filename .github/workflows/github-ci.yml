@@ -13,9 +13,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Create SSH key
-      - run: |
+        run: |
           echo ${{ TEST_SECRET }}
   build:
     runs-on: ubuntu-latest
