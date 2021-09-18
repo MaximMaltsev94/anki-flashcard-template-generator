@@ -8,7 +8,6 @@ Application is intended to help with generation of flashcards for [Anki applicat
 2. Searching and downloading of word pronunciation 
 3. Generation of flashcard templates (html) for insertion to Anki application.
 
-
 ## Prerequisite
 - Java 11
 - Maven 3.x
