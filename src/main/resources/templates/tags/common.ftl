@@ -8,6 +8,7 @@
           <link rel="stylesheet" href="<@spring.url '/static/css/main.css'/>" type="text/css" />
           <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"/>"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"/>"></script>
+          <script src="<@spring.url '/static/js/main.js'/>"/>"></script>
        </head>
        <body>
           <div class="ui raised very padded container segment">
@@ -87,3 +88,29 @@
         <button class="ui button ${customClasses}">Generate cards for another word.</button>
     </form>
 </#macro>
+
+<#macro exportCardsButton wordContextHolder successMsgId successDescriptionId errorMsgId customClasses="" >
+    <button class="ui button ${customClasses}"
+        onClick="submitExportCardForm('<@spring.url '/export-anki-flashcards'/>', '${successMsgId}', '${successDescriptionId}', '${errorMsgId}',
+        {
+            'originalWord': '${wordContextHolder.originalWord}',
+            'originalContext': '${wordContextHolder.originalContext}',
+            'translatedWords': [<#list wordContextHolder.translatedWords as translatedWord>'${translatedWord}',</#list>],
+            'translatedContext': '${wordContextHolder.translatedContext}',
+            'pronunciationFileName': '${wordContextHolder.pronunciationFileName}'
+        })">
+        Export cards to file.</button>
+</#macro>
+
+<#macro message type id text description="" descriptionId="">
+    <div id="${id}" class="ui ${type} message hidden">
+      <i class="close icon" onClick="hideMessage('${id}')"></i>
+      <div class="header">
+        ${text}
+      </div>
+      <#if (description != "")>
+         <p id="${descriptionId}">${description}</p>
+      </#if>
+    </div>
+</#macro>
+
