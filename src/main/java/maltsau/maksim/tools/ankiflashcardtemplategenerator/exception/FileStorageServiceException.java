@@ -11,4 +11,8 @@ public class FileStorageServiceException extends RuntimeException {
     public FileStorageServiceException(String message, Throwable cause) {
         super(message, cause);
     }
+
+    public FileStorageServiceException(String message) {
+        super(message);
+    }
 }

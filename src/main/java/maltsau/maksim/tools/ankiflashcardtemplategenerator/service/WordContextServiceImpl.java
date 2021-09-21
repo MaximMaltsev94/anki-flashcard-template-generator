@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of {@link WordContextService}.
@@ -44,11 +45,11 @@ public class WordContextServiceImpl implements WordContextService {
 
 
         return WordContextHolder.builder()
-                .withOriginalWord(originalWord)
-                .withOriginalContext(originalContext)
-                .withTranslatedWords(translatedWordsList)
-                .withTranslatedContext(translatedContext)
-                .withPronunciationFileName(savedFileName)
+                .withOriginalWord(removeForbiddenCharacters(originalWord))
+                .withOriginalContext(removeForbiddenCharacters(originalContext))
+                .withTranslatedWords(removeForbiddenCharacters(translatedWordsList))
+                .withTranslatedContext(removeForbiddenCharacters(translatedContext))
+                .withPronunciationFileName(removeForbiddenCharacters(savedFileName))
                 .build();
     }
 
@@ -67,5 +68,15 @@ public class WordContextServiceImpl implements WordContextService {
             return Collections.emptyList();
         }
         return List.of(source.split(NEW_LINE_REGEX));
+    }
+
+    private String removeForbiddenCharacters(String source) {
+        return source.replaceAll("'", "");
+    }
+
+    private List<String> removeForbiddenCharacters(List<String> source) {
+        return source.stream()
+                .map(this::removeForbiddenCharacters)
+                .collect(Collectors.toList());
     }
 }
