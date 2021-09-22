@@ -4,9 +4,11 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 public class WordContextHolderBuilderTest {
 
@@ -32,12 +34,12 @@ public class WordContextHolderBuilderTest {
 
         //then
 
-        assertNotNull(wordContextHolder);
-        assertEquals(wordContextHolder.getOriginalWord(), ORIGINAL_WORD);
-        assertEquals(wordContextHolder.getOriginalContext(), ORIGINAL_CONTEXT);
-        assertEquals(wordContextHolder.getTranslatedWords(), TRANSLATED_WORDS);
-        assertEquals(wordContextHolder.getTranslatedContext(), TRANSLATED_CONTEXT);
-        assertEquals(wordContextHolder.getPronunciationFileName(), PRONUNCIATION_FILE_NAME);
+        assertThat(wordContextHolder, is(notNullValue()));
+        assertThat(wordContextHolder.getOriginalWord(), is(equalTo(ORIGINAL_WORD)));
+        assertThat(wordContextHolder.getOriginalContext(), is(equalTo(ORIGINAL_CONTEXT)));
+        assertThat(wordContextHolder.getTranslatedWords(), is(equalTo(TRANSLATED_WORDS)));
+        assertThat(wordContextHolder.getTranslatedContext(), is(equalTo(TRANSLATED_CONTEXT)));
+        assertThat(wordContextHolder.getPronunciationFileName(), is(equalTo(PRONUNCIATION_FILE_NAME)));
     }
 
     @Test
@@ -55,11 +57,11 @@ public class WordContextHolderBuilderTest {
                 .build();
 
         //then
-        assertNotNull(wordContextHolder);
-        assertNull(wordContextHolder.getOriginalWord());
-        assertNull(wordContextHolder.getOriginalContext());
-        assertNull(wordContextHolder.getTranslatedWords());
-        assertNull(wordContextHolder.getTranslatedContext());
-        assertNull(wordContextHolder.getPronunciationFileName());
+        assertThat(wordContextHolder, is(notNullValue()));
+        assertThat(wordContextHolder.getOriginalWord(), is(nullValue()));
+        assertThat(wordContextHolder.getOriginalContext(), is(nullValue()));
+        assertThat(wordContextHolder.getTranslatedWords(), is(nullValue()));
+        assertThat(wordContextHolder.getTranslatedContext(), is(nullValue()));
+        assertThat(wordContextHolder.getPronunciationFileName(), is(nullValue()));
     }
 }

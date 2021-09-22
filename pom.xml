@@ -38,9 +38,11 @@
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <jacoco-plugin.version>0.8.7</jacoco-plugin.version>
         <testng.version>7.4.0</testng.version>
+        <hamcrest.version>2.2</hamcrest.version>
 
     </properties>
     <dependencies>
+<!--        Spring dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-freemarker</artifactId>
@@ -49,6 +51,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+<!--        end Spring dependencies-->
 
         <dependency>
             <groupId>commons-io</groupId>
@@ -56,6 +59,8 @@
             <version>${commons-io.version}</version>
         </dependency>
 
+
+<!--        Test dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -68,6 +73,14 @@
             <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+<!--        end Test dependencies-->
 
 
     </dependencies>

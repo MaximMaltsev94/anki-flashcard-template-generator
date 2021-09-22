@@ -2,9 +2,11 @@ package maltsau.maksim.tools.ankiflashcardtemplategenerator.domain;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.nullValue;
 
 public class TranslationSearchResultBuilderTest {
 
@@ -28,11 +30,11 @@ public class TranslationSearchResultBuilderTest {
 
         //then
 
-        assertNotNull(translationSearchResult);
-        assertEquals(translationSearchResult.getOriginalWord(), ORIGINAL_WORD);
-        assertEquals(translationSearchResult.getContextUri(), CONTEXT_URI);
-        assertEquals(translationSearchResult.getTranslationUri(), TRANSLATION_URI);
-        assertEquals(translationSearchResult.getPronunciationUri(), PRONUNCIATION_URI);
+        assertThat(translationSearchResult, is(notNullValue()));
+        assertThat(translationSearchResult.getOriginalWord(), is(equalTo(ORIGINAL_WORD)));
+        assertThat(translationSearchResult.getContextUri(), is(equalTo(CONTEXT_URI)));
+        assertThat(translationSearchResult.getTranslationUri(), is(equalTo(TRANSLATION_URI)));
+        assertThat(translationSearchResult.getPronunciationUri(), is(equalTo(PRONUNCIATION_URI)));
     }
 
     @Test
@@ -50,10 +52,10 @@ public class TranslationSearchResultBuilderTest {
 
         //then
 
-        assertNotNull(translationSearchResult);
-        assertNull(translationSearchResult.getOriginalWord());
-        assertNull(translationSearchResult.getContextUri());
-        assertNull(translationSearchResult.getTranslationUri());
-        assertNull(translationSearchResult.getPronunciationUri());
+        assertThat(translationSearchResult, is(notNullValue()));
+        assertThat(translationSearchResult.getOriginalWord(), is(nullValue()));
+        assertThat(translationSearchResult.getContextUri(), is(nullValue()));
+        assertThat(translationSearchResult.getTranslationUri(), is(nullValue()));
+        assertThat(translationSearchResult.getPronunciationUri(), is(nullValue()));
     }
 }
