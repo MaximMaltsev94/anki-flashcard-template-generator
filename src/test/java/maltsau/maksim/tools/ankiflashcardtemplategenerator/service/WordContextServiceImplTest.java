@@ -1,12 +1,12 @@
 package maltsau.maksim.tools.ankiflashcardtemplategenerator.service;
 
+import maltsau.maksim.tools.ankiflashcardtemplategenerator.BaseTestNGMockSetup;
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.domain.WordContextHolder;
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.exception.WordContextServiceException;
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.service.filestorage.FileStorageService;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.testng.annotations.AfterMethod;
+import org.mockito.Mockito;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -18,14 +18,14 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
-public class WordContextServiceImplTest {
+public class WordContextServiceImplTest extends BaseTestNGMockSetup {
 
     private static final String GOOGLE_COM = "https://www.google.com/";
     private static final String SAVED_FILE_NAME = "saved-file-name.mp3";
-
-    private AutoCloseable mocksClosable;
 
     @Mock
     private FileStorageService fileStorageService;
@@ -35,12 +35,7 @@ public class WordContextServiceImplTest {
 
     @BeforeMethod
     public void setUp() {
-        mocksClosable = MockitoAnnotations.openMocks(this);
-    }
-
-    @AfterMethod
-    public void afterClass() throws Exception {
-        mocksClosable.close();
+        Mockito.reset(fileStorageService);
     }
 
     @Test
@@ -60,6 +55,9 @@ public class WordContextServiceImplTest {
         assertThat(wordContextHolder.getTranslatedWords(), is(equalTo(List.of("translated word"))));
         assertThat(wordContextHolder.getTranslatedContext(), is(equalTo("translated context")));
         assertThat(wordContextHolder.getPronunciationFileName(), is(equalTo(SAVED_FILE_NAME)));
+
+        verify(fileStorageService).saveFileAsMP3(any());
+        verifyNoMoreInteractions(fileStorageService);
     }
 
     @DataProvider(name = "forbiddenCharactersDataSet")
@@ -88,6 +86,9 @@ public class WordContextServiceImplTest {
         assertThat(wordContextHolder.getTranslatedWords(), is(equalTo(List.of(expectedProcessedText))));
         assertThat(wordContextHolder.getTranslatedContext(), is(equalTo(expectedProcessedText)));
         assertThat(wordContextHolder.getPronunciationFileName(), is(equalTo(SAVED_FILE_NAME)));
+
+        verify(fileStorageService).saveFileAsMP3(any());
+        verifyNoMoreInteractions(fileStorageService);
     }
 
     @Test(expectedExceptions = WordContextServiceException.class, expectedExceptionsMessageRegExp = ".*malformed uri.*")
@@ -130,6 +131,9 @@ public class WordContextServiceImplTest {
         //then
         assertThat(wordContextHolder, is(notNullValue()));
         assertThat(wordContextHolder.getTranslatedWords(), is(equalTo(expectedParsedWords)));
+
+        verify(fileStorageService).saveFileAsMP3(any());
+        verifyNoMoreInteractions(fileStorageService);
     }
 
     @DataProvider(name = "generateContextNullArguments")
@@ -158,6 +162,11 @@ public class WordContextServiceImplTest {
 
         //then
         assertThat(wordContextHolder, is(notNullValue()));
+
+        if (pronunciationUri != null) {
+            verify(fileStorageService).saveFileAsMP3(any());
+        }
+        verifyNoMoreInteractions(fileStorageService);
     }
 
 
