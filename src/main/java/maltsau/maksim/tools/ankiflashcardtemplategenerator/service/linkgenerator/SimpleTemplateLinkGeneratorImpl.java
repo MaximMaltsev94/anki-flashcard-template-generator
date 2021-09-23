@@ -1,5 +1,7 @@
 package maltsau.maksim.tools.ankiflashcardtemplategenerator.service.linkgenerator;
 
+import org.springframework.util.StringUtils;
+
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -19,6 +21,9 @@ public class SimpleTemplateLinkGeneratorImpl implements LinkGenerator {
 
     @Override
     public String generateLink(String word) {
+        if (!StringUtils.hasText(word)) {
+            return String.format(template, "");
+        }
         String encodedWord = URLEncoder.encode(word, StandardCharsets.UTF_8);
         return String.format(template, encodedWord);
     }
