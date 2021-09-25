@@ -19,7 +19,7 @@ import java.util.Set;
 @Service
 public class FileSystemExportServiceImpl implements ExportService {
 
-    private static final String EXPORT_CONTENT_TEMPLATE_STRING = "%s | %s%s";
+    private static final String EXPORT_CONTENT_TEMPLATE_STRING = "%s | %s";
 
     private FileStorageService fileStorageService;
 
@@ -74,8 +74,7 @@ public class FileSystemExportServiceImpl implements ExportService {
     private String generateDataForExport(String frontTemplate, String backTemplate) {
         return String.format(EXPORT_CONTENT_TEMPLATE_STRING,
                 removeNewLineCharacters(frontTemplate),
-                removeNewLineCharacters(backTemplate),
-                System.lineSeparator());
+                removeNewLineCharacters(backTemplate));
     }
 
     private String removeNewLineCharacters(String content) {

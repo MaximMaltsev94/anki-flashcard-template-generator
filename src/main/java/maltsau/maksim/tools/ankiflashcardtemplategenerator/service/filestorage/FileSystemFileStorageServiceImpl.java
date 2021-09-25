@@ -59,7 +59,8 @@ public class FileSystemFileStorageServiceImpl implements FileStorageService {
     public String appendExportToFile(String content, CardType cardType) {
         String fileName = getExportFileNameByCardType(cardType);
         try {
-            FileUtils.writeStringToFile(new File(fileName), content, StandardCharsets.UTF_8, true);
+            FileUtils.writeStringToFile(new File(fileName), content + System.lineSeparator(),
+                    StandardCharsets.UTF_8, true);
             return fileName;
         } catch (IOException e) {
             throw new FileStorageServiceException(String.format(FILE_EXPORT_EXCEPTION, fileName), e);

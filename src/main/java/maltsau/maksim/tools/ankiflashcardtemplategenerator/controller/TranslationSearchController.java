@@ -26,7 +26,6 @@ public class TranslationSearchController {
         this.translationSearchService = translationSearchService;
     }
 
-
     /**
      * Method for handling GET request for word translation search.
      * @param word query param

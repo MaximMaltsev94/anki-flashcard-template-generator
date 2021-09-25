@@ -23,8 +23,8 @@ import java.util.stream.Collectors;
 @Service
 public class WordContextServiceImpl implements WordContextService {
 
-    private static final String MALFORMED_URI_MSG = "Error with parsing of provided URI";
-    private static final String URI_RESOURCE_ERROR_MSG = "Unexpected error with provided URI resource";
+    private static final String MALFORMED_URI_MSG = "Error with parsing of provided URI: `%s`";
+    private static final String URI_RESOURCE_ERROR_MSG = "Unexpected error with provided URI resource: `%s`";
     private static final String NEW_LINE_REGEX = "\\r?\\n";
 
     private final FileStorageService fileStorageService;
@@ -43,23 +43,25 @@ public class WordContextServiceImpl implements WordContextService {
         String savedFileName = saveFileFromUri(pronunciationUri);
         List<String> translatedWordsList = splitByNewLine(translatedWords);
 
-
         return WordContextHolder.builder()
                 .withOriginalWord(removeForbiddenCharacters(originalWord))
                 .withOriginalContext(removeForbiddenCharacters(originalContext))
                 .withTranslatedWords(removeForbiddenCharacters(translatedWordsList))
                 .withTranslatedContext(removeForbiddenCharacters(translatedContext))
-                .withPronunciationFileName(removeForbiddenCharacters(savedFileName))
+                .withPronunciationFileName(savedFileName)
                 .build();
     }
 
     private String saveFileFromUri(String uri) {
+        if (uri == null) {
+            return null;
+        }
         try {
             return fileStorageService.saveFileAsMP3(new UrlResource(uri).getInputStream());
         } catch (MalformedURLException e) {
-            throw new WordContextServiceException(MALFORMED_URI_MSG, e);
+            throw new WordContextServiceException(String.format(MALFORMED_URI_MSG, uri), e);
         } catch (IOException e) {
-            throw new WordContextServiceException(URI_RESOURCE_ERROR_MSG, e);
+            throw new WordContextServiceException(String.format(URI_RESOURCE_ERROR_MSG, uri), e);
         }
     }
 
@@ -71,7 +73,10 @@ public class WordContextServiceImpl implements WordContextService {
     }
 
     private String removeForbiddenCharacters(String source) {
-        return source.replaceAll("'", "");
+        if (source == null) {
+            return null;
+        }
+        return source.replace("'", "");
     }
 
     private List<String> removeForbiddenCharacters(List<String> source) {

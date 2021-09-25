@@ -2,6 +2,7 @@ package maltsau.maksim.tools.ankiflashcardtemplategenerator.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Domain object for storing information for flashcard generation.
@@ -36,7 +37,9 @@ public class WordContextHolder {
     }
 
     public List<String> getTranslatedWords() {
-        return Collections.unmodifiableList(translatedWords);
+        return Optional.ofNullable(translatedWords)
+                .map(Collections::unmodifiableList)
+                .orElse(null);
     }
 
     public String getTranslatedContext() {

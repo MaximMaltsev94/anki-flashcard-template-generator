@@ -4,6 +4,7 @@ import maltsau.maksim.tools.ankiflashcardtemplategenerator.domain.TranslationSea
 import maltsau.maksim.tools.ankiflashcardtemplategenerator.service.linkgenerator.LinkGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * Implementation of {@link TranslationSearchService}.
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class TranslationSearchServiceImpl implements TranslationSearchService {
+
+    private static final TranslationSearchResult DEFAULT_EMPTY_SEARCH_RESULT =
+            TranslationSearchResult.builder().build();
 
     private final LinkGenerator reversoContextLinkGenerator;
 
@@ -31,6 +35,10 @@ public class TranslationSearchServiceImpl implements TranslationSearchService {
 
     @Override
     public TranslationSearchResult searchTranslation(String word) {
+        if (!StringUtils.hasText(word)) {
+            return DEFAULT_EMPTY_SEARCH_RESULT;
+        }
+
         String lowercaseWord = word.toLowerCase();
         return TranslationSearchResult.builder()
                 .withOriginalWord(lowercaseWord)
