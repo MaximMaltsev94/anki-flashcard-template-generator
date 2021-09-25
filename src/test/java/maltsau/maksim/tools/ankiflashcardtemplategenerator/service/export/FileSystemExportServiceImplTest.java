@@ -46,9 +46,9 @@ public class FileSystemExportServiceImplTest extends BaseTestNGMockSetup {
     public void testExportAllCardTypes() {
         //given
         WordContextHolder wordContextHolder = WordContextHolder.builder().withOriginalWord("word").build();
-        String basicExportString = "basicFrontTemplate | basicBackTemplate" + System.lineSeparator();
-        String basicReversedExportString = "basicBackTemplate | basicFrontTemplate" + System.lineSeparator();
-        String typeInExportString = "typeInFrontTemplate | typeInBackTemplate" + System.lineSeparator();
+        String basicExportString = "basicFrontTemplate | basicBackTemplate";
+        String basicReversedExportString = "basicBackTemplate | basicFrontTemplate";
+        String typeInExportString = "typeInFrontTemplate | typeInBackTemplate";
 
         when(fileStorageService.appendExportToFile(basicExportString, CardType.BASIC)).thenReturn("basic saved file name");
         when(cardTemplateRenderService.renderBasicFrontTemplate(wordContextHolder)).thenReturn("basicFrontTemplate");
@@ -87,7 +87,7 @@ public class FileSystemExportServiceImplTest extends BaseTestNGMockSetup {
     public void testExportBasicCardType() {
         //given
         WordContextHolder wordContextHolder = WordContextHolder.builder().withOriginalWord("word").build();
-        String expectedExportString = "basicFrontTemplate | basicBackTemplate" + System.lineSeparator();
+        String expectedExportString = "basicFrontTemplate | basicBackTemplate";
 
 
         when(fileStorageService.appendExportToFile(expectedExportString, CardType.BASIC)).thenReturn("basic saved file name");
@@ -111,7 +111,7 @@ public class FileSystemExportServiceImplTest extends BaseTestNGMockSetup {
     public void testExportBasicReversedCardType() {
         //given
         WordContextHolder wordContextHolder = WordContextHolder.builder().withOriginalWord("word").build();
-        String expectedExportString = "basicBackTemplate | basicFrontTemplate" + System.lineSeparator();
+        String expectedExportString = "basicBackTemplate | basicFrontTemplate";
 
         when(fileStorageService.appendExportToFile(expectedExportString, CardType.BASIC_REVERSED))
                 .thenReturn("basic reversed saved file name");
@@ -135,7 +135,7 @@ public class FileSystemExportServiceImplTest extends BaseTestNGMockSetup {
     public void testExportTypeInCardType() {
         //given
         WordContextHolder wordContextHolder = WordContextHolder.builder().withOriginalWord("word").build();
-        String expectedExportString = "typeInFrontTemplate | typeInBackTemplate" + System.lineSeparator();
+        String expectedExportString = "typeInFrontTemplate | typeInBackTemplate";
 
         when(fileStorageService.appendExportToFile(expectedExportString, CardType.TYPE_IN))
                 .thenReturn("type in saved file name");

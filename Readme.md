@@ -9,7 +9,7 @@ Application is intended to help with generation of flashcards for [Anki applicat
 3. Generation of flashcard templates (html) for insertion to Anki application.
 
 ## Prerequisite
-- Java 11
+- Java 17
 - Maven 3.x
 
 ## Usage
